@@ -25,8 +25,8 @@ from version import __version__  # pylint: disable=g-import-not-at-top
 
 _LONG_DESCRIPTION = ""
 
-_jax_version = '0.2.27'
-_jaxlib_version = '0.1.76'
+_jax_version = '0.3.21'
+_jaxlib_version = '0.3.20'
 
 setuptools.setup(
   name='t5x',
@@ -43,30 +43,15 @@ setuptools.setup(
   scripts=[],
   install_requires=[
     'absl-py',
-    'cached_property',
-    # TODO(adarob): Replace with 'clu' once >0.0.6 is released.
-    'clu',
     'flax @ git+https://github.com/google/flax#egg=flax',
-    'gin-config',
     f'jax >= {_jax_version}',
     f'jaxlib >= {_jaxlib_version}',
     'numpy',
     'orbax==0.0.9',
-    'seqio-nightly',
     't5',
     'tensorflow',
-    'einops',
-    'tfds-nightly',
-    'tensorflow_probability',
-    'tensorflow-addons',
-    'tensorflow-datasets @ git+https://github.com/tensorflow/datasets',
-    'pycocoevalcap',
     'tensorstore >= 0.1.20',
-    'librosa',
-    'sk-video',
-    'SoundFile',
-    'scikit-image',
-    'wandb'
+    'einops'
   ],
   extras_require={
     'gcp': [

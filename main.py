@@ -141,7 +141,7 @@ def run(model, checkpoint: str, allocate: str, partitioner, input_seq_len=500):
   elif allocate == "dbg":
     with open("meta.pkl", "rb") as f:
       meta = pickle.load(f)
-    for sh, dtype, ax in meta[:1200]:
+    for sh, dtype, ax in meta[:1500]:
       donated.append(jnp.zeros(sh, dtype=dtype))
       donated_axis.append(ax)
   else:
@@ -165,7 +165,7 @@ def run(model, checkpoint: str, allocate: str, partitioner, input_seq_len=500):
 
   train_step = functools.partial(
     train_with_lr,
-    dropout_rng=rng,
+    dropout_rng=None,
     model=model,
     input_seq_len=seq_len
   )

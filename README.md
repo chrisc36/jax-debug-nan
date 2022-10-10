@@ -1,7 +1,7 @@
 # Jax NaN
 
 This repo contains code to reproduce a tricky NaN I found while training a neural network. Its contains
-some lightly modified code from [T5X](https://github.com/google-research/t5x) and a script to reproduce
+some slightly modified code from [T5X](https://github.com/google-research/t5x) and a script to reproduce
 the issue.
 
 # Setup
@@ -10,7 +10,7 @@ On a TPU v3-8, install following T5x:
 ```
 python3 -m pip install -e '.[tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html
 ```
-
+ 
 Download the checkpoint from gs://chrisc-public/debug-checkpoint:
 
 ```

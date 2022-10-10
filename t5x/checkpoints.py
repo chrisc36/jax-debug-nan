@@ -37,7 +37,6 @@ import time
 from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional, Sequence, Tuple, Union
 
 from absl import logging
-import clu.data
 from etils import epath
 from flax import serialization
 from flax import traverse_util
@@ -445,9 +444,7 @@ class Checkpointer(object):
                train_state: train_state_lib.TrainState,
                partitioner: partitioning.BasePartitioner,
                checkpoints_dir: str,
-               dataset_iterator: Optional[
-                   Union[tf.data.Iterator,
-                         clu.data.dataset_iterator.DatasetIterator]] = None,
+               dataset_iterator = None,
                *,
                keep: Optional[int] = None,
                save_dtype: jnp.dtype = np.float32,
@@ -486,11 +483,8 @@ class Checkpointer(object):
     self._save_dtype = save_dtype
     self.restore_dtype = restore_dtype
     self._original_dataset_iterator = dataset_iterator
-    if isinstance(dataset_iterator, tf.data.Iterator):
-      dataset_iterator = _TfDataCheckpointer(dataset_iterator)
-    elif isinstance(dataset_iterator,
-                    clu.data.dataset_iterator.TfDatasetIterator):
-      assert dataset_iterator._checkpoint
+    if dataset_iterator is not None:
+      raise NotImplementedError()
     self._dataset_iterator = dataset_iterator
     self._use_gda = use_gda
     if self._use_gda:
